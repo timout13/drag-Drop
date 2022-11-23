@@ -15,9 +15,9 @@
 }
 
 .scene {
-  width: 70%;
-  height: 80vh;
-  background-color: aliceblue;
+  width: 800px;
+  height: 800px;
+  background-image: url(/field.png);
 }
 
 img {
@@ -26,4 +26,8 @@ img {
   height: auto;
   border-radius: 25px;
   border: 1px solid black;
+}
+
+.card {
+  transform: translate(-50%, 0) !important;
 }

@@ -3,11 +3,23 @@ import React from "react";
 import Draggable from "react-draggable";
 
 export const Card = ({ player }) => {
+  const [cardClass, setCardClass] = useState("card");
+  const handleClick = () => {
+    if (cardClass === "card") {
+      console.log("oui");
+      setCardClass("");
+    }
+  };
   const nodeRef = React.useRef(null);
   return (
     <>
       <Draggable nodeRef={nodeRef}>
-        <div ref={nodeRef} style={{ position: "absolute" }}>
+        <div
+          onPointerOver={handleClick}
+          ref={nodeRef}
+          style={{ position: "absolute", top: player.top, left: player.left }}
+          className={cardClass}
+        >
           <img src="https://picsum.photos/50/50" />
           <p>{player.name}</p>
         </div>

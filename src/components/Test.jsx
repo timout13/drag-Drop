@@ -1,8 +1,7 @@
 import React, { useCallback, useRef } from "react";
 import { toPng } from "html-to-image";
-import { Card } from "./Card";
 
-export const Scene = ({ data }) => {
+export const Test = () => {
   const ref = useRef(null);
 
   const onButtonClick = useCallback(() => {
@@ -12,7 +11,7 @@ export const Scene = ({ data }) => {
 
     toPng(ref.current, {
       cacheBust: true,
-
+      backgroundColor: "#fff",
       width: 800,
       height: 800,
     })
@@ -26,19 +25,12 @@ export const Scene = ({ data }) => {
         console.log(err);
       });
   }, [ref]);
+
   return (
     <>
-      <h2>Scene</h2>
-      <div
-        className="scene"
-        ref={ref}
-        style={{
-          position: "relative",
-        }}
-      >
-        {data.map((player) => (
-          <Card key={player.id} player={player} />
-        ))}
+      <div ref={ref}>
+        <img src="https://picsum.photos/50/50" />
+        <p style={{ backgroundColor: "red" }}>TEst</p>
       </div>
       <button onClick={onButtonClick}>Click me</button>
     </>
