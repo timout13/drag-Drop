@@ -2,7 +2,7 @@ import React, { useCallback, useRef } from "react";
 import { toPng } from "html-to-image";
 import { Card } from "./Card";
 
-export const Scene = ({ data }) => {
+export const Scene = ({ data, isDraggable }) => {
   const ref = useRef(null);
 
   const onButtonClick = useCallback(() => {
@@ -37,7 +37,7 @@ export const Scene = ({ data }) => {
         }}
       >
         {data.map((player) => (
-          <Card key={player.id} player={player} />
+          <Card key={player.id} player={player} isDraggable={isDraggable} />
         ))}
       </div>
       <button onClick={onButtonClick}>Click me</button>

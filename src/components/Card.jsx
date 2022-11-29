@@ -2,9 +2,11 @@ import { useState } from "react";
 import React from "react";
 import Draggable from "react-draggable";
 
-export const Card = ({ player }) => {
+export const Card = ({ player, isDraggable }) => {
   const [cardClass, setCardClass] = useState("card");
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log(isDraggable);
     if (cardClass === "card") {
       console.log("oui");
       setCardClass("");
@@ -13,9 +15,21 @@ export const Card = ({ player }) => {
   const nodeRef = React.useRef(null);
   return (
     <>
-      <Draggable nodeRef={nodeRef}>
+      {isDraggable ? (
+        <Draggable nodeRef={nodeRef}>
+          <div
+            onClick={handleClick}
+            ref={nodeRef}
+            style={{ position: "absolute", top: player.top, left: player.left }}
+            className={cardClass}
+          >
+            <img src="https://picsum.photos/50/50" />
+            <p>{player.name}</p>
+          </div>
+        </Draggable>
+      ) : (
         <div
-          onPointerOver={handleClick}
+          onClick={handleClick}
           ref={nodeRef}
           style={{ position: "absolute", top: player.top, left: player.left }}
           className={cardClass}
@@ -23,7 +37,8 @@ export const Card = ({ player }) => {
           <img src="https://picsum.photos/50/50" />
           <p>{player.name}</p>
         </div>
-      </Draggable>
+      )}
+
       {/* <div
       draggable="true"
       onDragOver={(e) => {

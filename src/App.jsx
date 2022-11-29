@@ -20,10 +20,12 @@ const data = [
 
 function App() {
   const [count, setCount] = useState(0);
+  const [isDraggable, setIsDragabble] = useState(false);
 
   return (
     <div className="App">
-      <Scene data={data} />
+      <Scene data={data} isDraggable={isDraggable} />
+      <button onClick={() => setIsDragabble(!isDraggable)}>{isDraggable===true?'Block':'Drag'}</button>
       {/* <Test /> */}
     </div>
   );
